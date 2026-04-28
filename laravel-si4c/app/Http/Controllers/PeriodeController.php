@@ -14,7 +14,9 @@ class PeriodeController extends Controller
     {
         // akses model Periode
         $result = Periode::all(); //select*from periode
-        dd($result);
+        //dd($result);
+        return view('periode.index',
+        compact('result'));
     }
 
     /**
