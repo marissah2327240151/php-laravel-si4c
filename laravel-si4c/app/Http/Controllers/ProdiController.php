@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
@@ -21,19 +22,30 @@ class ProdiController extends Controller
      */
     public function create()
     {
+        $fakultas = Fakultas::all();
+        return view('prodi.create', compact('fakultas'));
         //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
+        $input = $request->validate([
+            'nama_prodi' => 'required',
+            'singkatan' => 'required',
+            'kaprodi' => 'required',
+            'fakultas_id' => 'required|exists:fakultas,id',
+        ]);
+        prodi ::create($input);
+
+        return redirect()->route('prodi.index');
         //
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource. 
      */
     public function show(Prodi $prodi)
     {
