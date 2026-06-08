@@ -28,7 +28,7 @@ class DashboardController extends Controller
             ORDER BY tahun_angkatan
         ");
 
-        return view('dashboard', compact(
+        return view('dashboard-adminlte', compact(
             'grafikmhs',
             'grafikangkatan'
         ));
